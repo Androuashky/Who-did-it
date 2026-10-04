@@ -1,3 +1,4 @@
+-- Active: 1791144781415@@127.0.0.1@5435@whodidit_db
 -- Migration 001 (UP) : crée les 4 tables de WhoDunnit V1
 -- cases (1) -> suspects (4) -> questions (12)
 --   \-> clues (8) <- questions.reveals_clue_id
