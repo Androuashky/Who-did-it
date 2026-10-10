@@ -26,19 +26,39 @@ INSERT INTO clues (id, case_id, title, description, location, how_to_find, image
   (8, 1, 'Addition Chez Paulo', 'Table 4 ouverte à 22h15, addition imprimée à 22h40. Aubry n''a donc pas dîné là-bas dès 20h.', 'Cabinet de l''avocat', 'Interroger Aubry (question 1)', '/images/indices/08_addition_chez_paulo.png', TRUE);
 
 -- Les 12 questions (reveals_clue_id : l'indice débloqué par la réponse)
-INSERT INTO questions (id, suspect_id, question, answer, reveals_clue_id) VALUES
-  (1, 1, 'Où étiez-vous vendredi soir ?', 'Au restaurant Chez Paulo, du début de soirée jusqu''à tard. Tenez, voici mon addition.', 8),
-  (2, 1, 'Quand avez-vous vu Marcel pour la dernière fois ?', 'Mardi, à mon cabinet. Je n''ai pas mis les pieds à la galerie cette semaine.', NULL),
-  (3, 1, 'Que pensez-vous de sa mort ?', 'Un cambriolage qui a mal tourné, évidemment. Un coup sur la tête, et c''est fini... Il n''a pas dû souffrir. Pauvre Marcel.', NULL),
-  (4, 2, 'Que faisiez-vous à la galerie vendredi soir ?', 'Je livrais un colis. Voilà mon bon : 21h52. Personne n''a répondu, la porte était ouverte. Je suis entré et il était par terre.', 7),
-  (5, 2, 'Pourquoi avoir fui sans prévenir la police ?', 'J''ai un casier pour vol à l''étalage. Personne ne m''aurait cru. J''ai appelé la police depuis une cabine, sans donner mon nom.', NULL),
-  (6, 2, 'Qu''avez-vous vu dans le bureau ?', 'Marcel par terre, la fenêtre cassée et le coffre ouvert. Je n''ai rien touché, sauf la poignée de la porte.', NULL),
-  (7, 3, 'Que saviez-vous de Marcel Vidal ?', 'Il m''a appelée jeudi : 340 000 € avaient disparu de son compte. Il soupçonnait quelqu''un de très proche et devait me donner son nom samedi.', NULL),
-  (8, 3, 'Où étiez-vous vendredi entre 21h et 22h ?', 'En direct sur Radio Nord, de 21h à 22h. L''agent Lopez peut vérifier avec la station.', NULL),
-  (9, 3, 'Avez-vous une preuve de cet appel ?', 'Il m''a laissé un message vocal. Écoutez.', 6),
-  (10, 4, 'Pourquoi avez-vous quitté la galerie ?', 'Vidal m''a viré il y a deux semaines : il disait que je traînais. J''étais furieux, mais je n''aurais jamais touché à Marcel.', NULL),
-  (11, 4, 'Qu''avez-vous entendu vendredi soir ?', 'Vers 21h, une dispute entre deux hommes, puis plus rien. J''étais chez moi, en ligne avec des amis jusqu''à 22h30. L''agent Lopez peut vérifier.', NULL),
-  (12, 4, 'Avez-vous vu quelqu''un sortir de la galerie ?', 'Vers 21h40, un homme en costume sombre est sorti vite, une mallette à la main. Il portait une cravate rose, ça m''a marqué sous la pluie. Je n''ai pas vu son visage. Plus tard, un type à casquette courait vers le métro.', NULL);
+INSERT INTO questions (id, case_id, suspect_id, question, answer, reveals_clue_id) VALUES
+  (1, 1, 1, 'Où étiez-vous vendredi soir ?', 'Au restaurant Chez Paulo, du début de soirée jusqu''à tard. Tenez, voici mon addition.', 8),
+  (2, 1, 1, 'Quand avez-vous vu Marcel pour la dernière fois ?', 'Mardi, à mon cabinet. Je n''ai pas mis les pieds à la galerie cette semaine.', NULL),
+  (3, 1, 1, 'Que pensez-vous de sa mort ?', 'Un cambriolage qui a mal tourné, évidemment. Un coup sur la tête, et c''est fini... Il n''a pas dû souffrir. Pauvre Marcel.', NULL),
+  (4, 1, 2, 'Que faisiez-vous à la galerie vendredi soir ?', 'Je livrais un colis. Voilà mon bon : 21h52. Personne n''a répondu, la porte était ouverte. Je suis entré et il était par terre.', 7),
+  (5, 1, 2, 'Pourquoi avoir fui sans prévenir la police ?', 'J''ai un casier pour vol à l''étalage. Personne ne m''aurait cru. J''ai appelé la police depuis une cabine, sans donner mon nom.', NULL),
+  (6, 1, 2, 'Qu''avez-vous vu dans le bureau ?', 'Marcel par terre, la fenêtre cassée et le coffre ouvert. Je n''ai rien touché, sauf la poignée de la porte.', NULL),
+  (7, 1, 3, 'Que saviez-vous de Marcel Vidal ?', 'Il m''a appelée jeudi : 340 000 € avaient disparu de son compte. Il soupçonnait quelqu''un de très proche et devait me donner son nom samedi.', NULL),
+  (8, 1, 3, 'Où étiez-vous vendredi entre 21h et 22h ?', 'En direct sur Radio Nord, de 21h à 22h. L''agent Lopez peut vérifier avec la station.', NULL),
+  (9, 1, 3, 'Avez-vous une preuve de cet appel ?', 'Il m''a laissé un message vocal. Écoutez.', 6),
+  (10, 1, 4, 'Pourquoi avez-vous quitté la galerie ?', 'Vidal m''a viré il y a deux semaines : il disait que je traînais. J''étais furieux, mais je n''aurais jamais touché à Marcel.', NULL),
+  (11, 1, 4, 'Qu''avez-vous entendu vendredi soir ?', 'Vers 21h, une dispute entre deux hommes, puis plus rien. J''étais chez moi, en ligne avec des amis jusqu''à 22h30. L''agent Lopez peut vérifier.', NULL),
+  (12, 1, 4, 'Avez-vous vu quelqu''un sortir de la galerie ?', 'Vers 21h40, un homme en costume sombre est sorti vite, une mallette à la main. Il portait une cravate rose, ça m''a marqué sous la pluie. Je n''ai pas vu son visage. Plus tard, un type à casquette courait vers le métro.', NULL);
+
+-- Seed 002 : les 10 personnages de l'affaire #001
+-- À lancer après le seed 001 (il faut que les suspects existent).
+-- suspect_id : l'id du suspect si le personnage en est un, sinon NULL.
+
+INSERT INTO characters (id, case_id, suspect_id, name, role, description, image) VALUES
+  (1, 1, NULL, 'Sam Carrel', 'Détective (le joueur)', 'Détective privé au long manteau, chargé de mener l''enquête. C''est lui que tu incarne.', '/images/personnages/01_detective_sam_carrel.png'),
+  (2, 1, NULL, 'Agent Moreau', 'Policier', 'Agent de police sur place. Il garde la scène de crime et détient les images de la caméra de rue.', '/images/personnages/02_policier_agent_moreau.png'),
+  (3, 1, NULL, 'Agent Lopez', 'Policière', 'Agent de police qui vérifie les alibis et surveille la salle d''interrogatoire.', '/images/personnages/03_policiere_agent_lopez.png'),
+  (4, 1, 4, 'Jules Perrin', 'Étudiant, voisin de la galerie', 'Voisin de palier de la galerie. Il y travaillait à temps partiel jusqu''à son licenciement, il y a deux semaines.', '/images/personnages/04_jules_perrin_voisin.png'),
+  (5, 1, 2, 'Théo Ferrand', 'Livreur de nuit', 'Jeune livreur à casquette et lunettes noires. Il a un casier pour vol à l''étalage et a été vu en train de s''enfuir de la galerie.', '/images/personnages/05_theo_ferrand_livreur.png'),
+  (6, 1, 3, 'Léa Morel', 'Journaliste', 'Journaliste d''investigation. Vidal l''avait contactée la veille de sa mort pour lui parler d''une affaire d''argent.', '/images/personnages/06_lea_morel_journaliste.png'),
+  (7, 1, NULL, 'Dr Diallo', 'Médecin légiste', 'Médecin légiste de la morgue. Il a examiné le corps de Marcel Vidal et rédigé le rapport.', '/images/personnages/07_dr_diallo_legiste.png'),
+  (8, 1, 1, 'Maître Karim Aubry', 'Avocat et gestionnaire de patrimoine', 'Ami de Marcel Vidal depuis vingt ans, il gère son argent et ses contrats. Élégant, très sûr de lui, toujours en costume sombre.', '/images/personnages/08_karim_aubry_avocat.png'),
+  (9, 1, NULL, 'Commissaire Duval', 'Commissaire de police', 'Chef du commissariat. Il confie l''affaire au détective et attend des preuves solides avant toute arrestation.', '/images/personnages/09_commissaire_duval.png'),
+  (10, 1, NULL, 'Marcel Vidal', 'Victime, propriétaire de la galerie', 'Propriétaire de la Galerie Vidal, 62 ans. Retrouvé mort dans son bureau un vendredi soir de pluie.', '/images/personnages/10_marcel_vidal_victime.png');
+
+-- Remet le compteur d'identifiants à jour (les id ont été imposés à la main)
+SELECT setval(pg_get_serial_sequence('characters', 'id'), (SELECT MAX(id) FROM characters));
+
 
 -- Remet les compteurs d'identifiants à jour (nécessaire car on a imposé les id à la main)
 SELECT setval(pg_get_serial_sequence('cases', 'id'), (SELECT MAX(id) FROM cases));

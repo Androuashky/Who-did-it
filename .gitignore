@@ -1,4 +1,5 @@
-.docker-compose.yml
+docker-compose.yml
+.gitignore
 .env
 
 # Logs

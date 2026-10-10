@@ -3,4 +3,4 @@
 -- Les index sont supprimés avec leurs tables.
 -- ATTENTION : toutes les données sont perdues.
 
-DROP TABLE IF EXISTS questions, clues, suspects, cases CASCADE;
+DROP TABLE IF EXISTS characters, questions, clues, suspects, cases CASCADE;

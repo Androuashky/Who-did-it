@@ -1,0 +1,100 @@
+/* Page : le fond garde ses proportions, la couleur du bas prolonge le parquet */
+body {
+  margin: 0;
+  background: #5c402e url('/images/fonds/11_presentation_personnages.png') no-repeat top center;
+  background-size: 100% auto;
+  font-family: 'Courier New', monospace;
+  color: #1f2a47;
+}
+
+.page {
+  position: relative;
+  padding: 27vw 24px 48px;          /* laisse le mur et la plaque visibles en haut */
+}
+
+/* Le titre se pose sur la plaque vide du fond */
+.page h1 {
+  position: absolute;
+  top: 5.94vw;                       /* haut de la plaque */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 37.5vw;
+  height: 5.6vw;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(14px, 2.2vw, 40px);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #1f2a47;
+}
+
+/* La grille : 5 cartes par ligne sur grand écran, moins sur petit */
+.container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);   /* 5 cartes par ligne = 2 lignes pour 10 personnages */
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* La carte = une fiche de dossier */
+.carte {
+  position: relative;               /* pour poser l'étiquette sur l'image */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  background: #efe6cf;
+  border: 3px solid #1f2a47;
+  box-shadow: 5px 5px 0 #0f1526;     /* ombre dure : effet pixel */
+  transition: transform 0.15s;
+}
+.carte:hover { transform: translateY(-5px); }
+
+.carte img {
+  width: 100%;
+  aspect-ratio: 440 / 640;           /* garde les proportions du PNG */
+  object-fit: contain;
+  background: #3c4b76;
+  border: 3px solid #1f2a47;
+  image-rendering: pixelated;        /* garde le pixel art net */
+}
+
+.carte h2 { margin: 0; font-size: 15px; text-align: center; }
+.carte .role { margin: 0; font-size: 12px; text-align: center; opacity: 0.75; }
+.carte .desc {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+   line-clamp: 3;              /* 3 lignes maximum */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Étiquette rouge pour les suspects, posée dans le coin de l'image */
+.badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 2px 8px;
+  background: #d63c48;
+  color: #fff;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+/* Écrans moyens et petits : moins de colonnes */
+@media (max-width: 1000px) { .container { grid-template-columns: repeat(4, 1fr); } }
+@media (max-width: 700px)  { .container { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+
+/* Petits écrans : le titre sort de la plaque, le fond remplit l'écran */
+@media (max-width: 700px) {
+  body { background-size: cover; background-attachment: fixed; }
+  .page { padding-top: 24px; }
+  .page h1 { position: static; transform: none; width: auto; height: auto; margin-bottom: 20px; color: #efe6cf; }
+}

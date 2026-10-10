@@ -1,4 +1,3 @@
--- Active: 1791144781415@@127.0.0.1@5435@whodidit_db
 -- Migration 001 (UP) : crée les 4 tables de WhoDunnit V1
 -- cases (1) -> suspects (4) -> questions (12)
 --   \-> clues (8) <- questions.reveals_clue_id
@@ -34,15 +33,38 @@ CREATE TABLE clues (
 
 CREATE TABLE questions (
   id              SERIAL PRIMARY KEY,
+  case_id         INT  NOT NULL REFERENCES cases(id) ON DELETE CASCADE,
   suspect_id      INT  NOT NULL REFERENCES suspects(id) ON DELETE CASCADE,
   question        TEXT NOT NULL,
   answer          TEXT NOT NULL,
   reveals_clue_id INT REFERENCES clues(id) ON DELETE SET NULL   -- indice débloqué par la réponse
 );
 
+-- Migration 002 (UP) : crée la table characters (les 10 personnages du jeu)
+-- Un personnage est lié à une affaire (case_id).
+-- S'il est aussi suspect, suspect_id pointe vers la table suspects ; sinon il vaut NULL.
+
+CREATE TABLE characters (
+  id          SERIAL PRIMARY KEY,
+  case_id     INT  NOT NULL REFERENCES cases(id) ON DELETE CASCADE,
+  suspect_id  INT  REFERENCES suspects(id) ON DELETE SET NULL,  -- NULL = n'est pas un suspect
+  name        TEXT NOT NULL,
+  role        TEXT NOT NULL,
+  description TEXT NOT NULL,
+  image       TEXT                             -- ex : /images/personnages/01_detective_sam_carrel.png
+);
+
+-- Index sur les clés étrangères
+CREATE INDEX idx_characters_case ON characters(case_id);
+
+-- Un suspect correspond à un seul personnage (les NULL sont autorisés plusieurs fois)
+CREATE UNIQUE INDEX one_character_per_suspect ON characters(suspect_id);
+
+
 -- Index sur les clés étrangères
 CREATE INDEX idx_suspects_case  ON suspects(case_id);
 CREATE INDEX idx_clues_case     ON clues(case_id);
+CREATE INDEX idx_questions_case ON questions(case_id);
 CREATE INDEX idx_questions_susp ON questions(suspect_id);
 
 -- Un seul coupable par affaire
