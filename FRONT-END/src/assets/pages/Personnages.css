@@ -1,15 +1,12 @@
-/* Page : le fond garde ses proportions, la couleur du bas prolonge le parquet */
-body {
-  margin: 0;
-  background: #5c402e url('/images/fonds/11_presentation_personnages.png') no-repeat top center;
-  background-size: 100% auto;
-  font-family: 'Courier New', monospace;
-  color: #1f2a47;
-}
-
+/* Page des personnages (le fond est sur .page, pas sur body, pour ne pas toucher aux autres pages) */
 .page {
   position: relative;
+  min-height: 100vh;
   padding: 27vw 24px 48px;          /* laisse le mur et la plaque visibles en haut */
+  background: #5c402e url('/images/fonds/11_presentation_personnages.png') no-repeat top center;
+  background-size: 100% auto;       /* le fond garde ses proportions, la couleur du bas prolonge le parquet */
+  font-family: 'Courier New', monospace;
+  color: #1f2a47;
 }
 
 /* Le titre se pose sur la plaque vide du fond */
@@ -64,15 +61,21 @@ body {
 
 .carte h2 { margin: 0; font-size: 15px; text-align: center; }
 .carte .role { margin: 0; font-size: 12px; text-align: center; opacity: 0.75; }
-.carte .desc {
+/* .carte .desc {
   margin: 0;
   font-size: 11px;
   line-height: 1.35;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
-   line-clamp: 3;              /* 3 lignes maximum */
+  -webkit-line-clamp: 3;            
+  line-clamp: 3;                    
   -webkit-box-orient: vertical;
   overflow: hidden;
+} */
+
+.carte .desc {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.35;
 }
 
 /* Étiquette rouge pour les suspects, posée dans le coin de l'image */
@@ -94,7 +97,6 @@ body {
 
 /* Petits écrans : le titre sort de la plaque, le fond remplit l'écran */
 @media (max-width: 700px) {
-  body { background-size: cover; background-attachment: fixed; }
-  .page { padding-top: 24px; }
+  .page { padding-top: 24px; background-size: cover; background-attachment: fixed; }
   .page h1 { position: static; transform: none; width: auto; height: auto; margin-bottom: 20px; color: #efe6cf; }
 }

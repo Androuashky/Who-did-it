@@ -1,0 +1,5 @@
+.page-commi {
+  min-height: 100vh;
+  background: #0c0926 url('/images/fonds/03_commissariat_bureau.png') no-repeat center / cover;
+  image-rendering: pixelated;
+}

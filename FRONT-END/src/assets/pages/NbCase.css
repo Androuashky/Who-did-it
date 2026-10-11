@@ -1,0 +1,116 @@
+/* Page « une enquête » : classes propres à cette page (page-enquete, dossier, ...)
+   pour ne pas se mélanger aux autres pages. */
+
+.page-enquete {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background: #2e2018 url('/images/fonds/15_dossier_enquete.png') no-repeat center / cover;
+  background-attachment: fixed;
+  image-rendering: pixelated;
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* Le dossier ouvert posé sur le bureau */
+.dossier {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 36px 32px 32px;
+  background: #e8cf9a;
+  border: 4px solid #3a2a1c;
+  box-shadow: 8px 8px 0 #1c120b;
+  color: #3a2a1c;
+}
+
+/* L'onglet du dossier */
+.dossier::before {
+  content: 'AFFAIRE';
+  position: absolute;
+  top: -28px;
+  left: 20px;
+  padding: 6px 14px 4px;
+  font-size: 11px;
+  background: #e8cf9a;
+  border: 4px solid #3a2a1c;
+  border-bottom: none;
+}
+
+.dossier h1 {
+  margin: 0;
+  font-size: clamp(14px, 2.2vw, 24px);
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+/* Étiquette de difficulté */
+.niveau {
+  align-self: flex-start;
+  padding: 6px 12px;
+  font-size: 11px;
+  color: #fff;
+  background: #777;
+  border: 3px solid #3a2a1c;
+}
+.niveau-facile    { background: #3f9a62; }
+.niveau-moyen     { background: #d98a1f; }
+.niveau-difficile { background: #c8323f; }
+
+.dossier p {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+/* Les deux boutons côte à côte (l'un sous l'autre sur mobile) */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 6px;
+}
+
+.actions button,
+.actions a {                          /* marche pour un <button> comme pour un <Link> */
+  flex: 1 1 240px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 14px;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  border: 4px solid #1f1b5a;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
+}
+
+.btn-voir {                           /* bouton secondaire */
+  color: #1f1b5a;
+  background: #efe6cf;
+  box-shadow: 0 6px 0 #a89a78, 0 6px 0 4px #1f1b5a;
+}
+.btn-commencer {                      /* bouton principal */
+  color: #1f1b5a;
+  background: #f0c458;
+  box-shadow: 0 6px 0 #a8801e, 0 6px 0 4px #1f1b5a;
+}
+.btn-voir:hover      { background: #fff8e4; }
+.btn-commencer:hover { background: #ffd978; }
+.actions button:active,
+.actions a:active { transform: translateY(6px); box-shadow: none; }
+
+@media (max-width: 640px) {
+  .page-enquete { padding: 40px 14px 28px; align-items: flex-start; }
+  .dossier { padding: 28px 18px 22px; gap: 18px; }
+  .dossier p { font-size: 15px; }
+}
