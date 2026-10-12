@@ -1,5 +1,138 @@
 .page-commi {
+  position: relative;
   min-height: 100vh;
+  overflow: hidden;
   background: #0c0926 url('/images/fonds/03_commissariat_bureau.png') no-repeat center / cover;
   image-rendering: pixelated;
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* le bouton qui contient l'image du commissaire */
+.page-commi > button {
+  position: absolute;
+  left: 42%;
+  bottom: 4%;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.officer {
+  display: block;
+  height: 52vh;
+  width: auto;
+}
+
+/* la modale (le div qui apparaît) */
+.page-commi > div {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 40px);
+  max-width: 760px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+  padding: 28px;
+  background: #efe6cf;
+  border: 4px solid #1f1b5a;
+  color: #1f1b5a;
+  box-shadow: 8px 8px 0 #0c0926, 0 0 0 100vmax rgba(12, 9, 38, 0.72);
+  z-index: 10;
+
+  /* titre + texte sur toute la largeur, boutons en dessous */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 12px;
+}
+
+/* le bouton X */
+.modal-fermer {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 12px;
+  color: #fff;
+  background: #c8323f;
+  border: 4px solid #1f1b5a;
+  cursor: pointer;
+}
+.modal-fermer:hover { background: #e0434f; }
+
+.page-commi > div h1 {
+  flex: 0 0 100%;
+  margin: 0;
+  padding-right: 40px;
+  font-size: 16px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: #c8323f;
+}
+
+.page-commi > div p {
+  flex: 0 0 100%;
+  margin: 0;
+  min-height: 150px;          /* la boîte ne saute pas d'une réplique à l'autre */
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Précédent à gauche, Suivant à droite */
+.btn-suivant,
+.btn-precedent {
+  padding: 14px 20px;
+  font-family: inherit;
+  font-size: 12px;
+  color: #1f1b5a;
+  border: 4px solid #1f1b5a;
+  cursor: pointer;
+}
+.btn-precedent {
+  order: 1;
+  background: #d8cdb0;
+}
+.btn-suivant {
+  order: 2;
+  margin-left: auto;
+  background: #f0c458;
+  box-shadow: 0 6px 0 #a8801e;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.btn-suivant:hover  { background: #ffd978; }
+.btn-suivant:active { transform: translateY(6px); box-shadow: none; }
+.btn-precedent:hover { background: #e6dcc2; }
+
+.btn-scene {
+  position: absolute;
+  left: 85%;
+  bottom: 6%;
+  transform: translateX(-50%);
+  padding: 16px 22px;
+  font-family: inherit;
+  font-size: 13px;
+  text-align: center;
+  text-decoration: none;
+  color: #1f1b5a;
+  background: #f0c458;
+  border: 4px solid #1f1b5a;
+  box-shadow: 0 6px 0 #a8801e, 0 6px 0 4px #1f1b5a;
+  animation: pulse 1.2s steps(2, end) infinite;
+}
+.btn-scene:hover  { background: #ffd978; }
+.btn-scene:active { box-shadow: none; transform: translateX(-50%) translateY(6px); }
+
+@keyframes pulse { 50% { bottom: calc(6% + 6px); } }
+
+
+@media (max-width: 640px) {
+  .officer { height: 40vh; }
+  .page-commi > button { left: 50%; transform: translateX(-50%); }
+  .page-commi > div { padding: 22px 16px; }
+  .page-commi > div p { font-size: 16px; min-height: 190px; }
+  .btn-scene { width: calc(100% - 40px); box-sizing: border-box; font-size: 11px; }
 }
